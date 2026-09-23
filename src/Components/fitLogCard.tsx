@@ -35,7 +35,7 @@ const FitLogCard = ({ fitLog }: FitLogCardProps) => {
                     {fitLog.muscleGroups.map((muscle) => (
                         <span
                             key={muscle}
-                            className="rounded-full bg-[#c2f800] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-primary"
+                            className="rounded-full bg-[#c2f800] px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-black"
                         >
                             {muscle}
                         </span>

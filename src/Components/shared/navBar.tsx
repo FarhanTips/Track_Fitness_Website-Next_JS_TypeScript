@@ -1,7 +1,17 @@
+'use client';
 import Image from 'next/image';
 import logo from "@/assets/logo.png"
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const NavBar = () => {
+
+    const pathname = usePathname();
+
+    const links = <>
+        <li><Link className={`font-semibold ${pathname === "/" ? "text-[#ccff00]" : ""}`} href="/">Workouts</Link></li>
+        <li><Link className={`font-semibold ${pathname === "/my-plan" ? "text-[#ccff00]" : ""}`} href="/my-plan">My Plan</Link></li>
+        </>
     return (
         <div className='sticky top-0 z-50 border-b border-gray-600 bg-base-200 mb-15'>
             <div className="navbar w-10/12 mx-auto">
@@ -17,8 +27,7 @@ const NavBar = () => {
                             tabIndex={-1}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
                         >
-                            <li><a>Item 1</a></li>
-                            <li><a>Item 3</a></li>
+                            {links}
                         </ul>
                     </div>
 
@@ -39,15 +48,14 @@ const NavBar = () => {
 
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li><a>Item 1</a></li>
-                        <li><a>Item 3</a></li>
+                        {links}
                     </ul>
                 </div>
 
                 <div className="navbar-end flex items-center space-x-2 sm:space-x-5 lg:space-x-7 font-semibold">
                     <div className="flex items-center gap-2">
                         <span>Plan</span>
-                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#c2f800] text-black">
+                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#ccff00] text-black">
                             0
                         </span>
                     </div>
