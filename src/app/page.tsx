@@ -1,9 +1,10 @@
+import HomeLibrary from "@/Components/homeLibrary";
 
 
 export default function Home() {
   return (
     <div>
-      <h2>Hello</h2>
+      <HomeLibrary></HomeLibrary>
     </div>
   );
 }
