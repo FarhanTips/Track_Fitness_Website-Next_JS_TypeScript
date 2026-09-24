@@ -3,6 +3,8 @@ import Image from 'next/image';
 import logo from "@/assets/logo.png"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useContext } from 'react';
+import { FitLogsContext } from '@/context/fitLogscontext';
 
 const NavBar = () => {
 
@@ -11,7 +13,9 @@ const NavBar = () => {
     const links = <>
         <li><Link className={`font-semibold ${pathname === "/" ? "text-[#ccff00]" : ""}`} href="/">Workouts</Link></li>
         <li><Link className={`font-semibold ${pathname === "/my-plan" ? "text-[#ccff00]" : ""}`} href="/my-plan">My Plan</Link></li>
-        </>
+    </>
+
+    const { plansArr, laterArr } = useContext(FitLogsContext);
     return (
         <div className='sticky top-0 z-50 border-b border-gray-600 bg-base-200 mb-15'>
             <div className="navbar w-10/12 mx-auto">
@@ -39,10 +43,11 @@ const NavBar = () => {
                             height={200}
                             className="object-contain -scale-x-100"
                         />
-
-                        <span className="text-xl font-bold">
-                            FITLOG
-                        </span>
+                        <Link href={"/"}>
+                            <span className="text-xl font-bold">
+                                FITLOG
+                            </span>
+                        </Link>
                     </div>
                 </div>
 
@@ -53,19 +58,24 @@ const NavBar = () => {
                 </div>
 
                 <div className="navbar-end flex items-center space-x-2 sm:space-x-5 lg:space-x-7 font-semibold">
-                    <div className="flex items-center gap-2">
-                        <span>Plan</span>
-                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#ccff00] text-black">
-                            0
-                        </span>
-                    </div>
 
-                    <div className="flex items-center gap-2 text-[#d1d5db]">
-                        <span>Saved</span>
-                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#9ca3af]">
-                            0
-                        </span>
-                    </div>
+                    <Link href={"/my-plan"}>
+                        <div className="flex items-center gap-2">
+                            <span>Plan</span>
+                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#ccff00] text-black">
+                                {plansArr.length}
+                            </span>
+                        </div>
+                    </Link>
+
+                    <Link href={"/my-plan"}>
+                        <div className="flex items-center gap-2 text-[#d1d5db]">
+                            <span>Saved</span>
+                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#9ca3af]">
+                                {laterArr.length}
+                            </span>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -1,3 +1,5 @@
+import AddPlanButton from '@/Components/Buttons/addPlanButton';
+import SaveLaterButton from '@/Components/Buttons/saveLaterButton';
 import { getFitLogs } from '@/lib/getFit';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -115,10 +117,8 @@ const WorkoutDetails = async ({ params }: WorkoutDetailsProps) => {
 
                     {/* CTA Buttons */}
                     <div className="mt-8 flex flex-col sm:flex-row gap-3">
-
-                        <button className="btn btn-success bg-[#ccff00] text-black rounded-xl px-6">▢ Add to today&apos;s plan</button>
-
-                        <button className="btn btn-neutral bg-base-200 border border-gray-500 px-9 rounded-xl">▯ Save for later</button>
+                        <AddPlanButton fitLog={fitLog}></AddPlanButton>
+                        <SaveLaterButton fitLog={fitLog}></SaveLaterButton>
                     </div>
 
                 </div>
