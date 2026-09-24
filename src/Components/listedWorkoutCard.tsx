@@ -1,15 +1,21 @@
 import { FitLogType } from '@/types/fitLogType';
 import Image from 'next/image';
 import Link from 'next/link';
+import CrossButton from './Buttons/crossButton';
 
 
-const ListedWorkoutCard = ({ fitLog }: { fitLog: FitLogType }) => {
+interface ListedWorkoutCardProps {
+    fitLog: FitLogType,
+    activeTab: "plan" | "saved"
+}
+
+const ListedWorkoutCard = ({ fitLog, activeTab }: ListedWorkoutCardProps) => {
     return (
         <div className="group rounded-2xl border border-base-300 bg-base-200 p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-5">
 
                 {/* Thumbnail */}
-                <div className="w-full sm:w-32 md:w-36 h-44 sm:h-32 md:h-36 shrink-0 overflow-hidden rounded-xl">
+                <div className="w-full md:w-32 lg:w-36 h-full md:h-32 lg:h-36 shrink-0 overflow-hidden rounded-xl">
                     <Image
                         src={fitLog.image}
                         alt={fitLog.name}
@@ -24,7 +30,7 @@ const ListedWorkoutCard = ({ fitLog }: { fitLog: FitLogType }) => {
 
                     {/* Title + Equipment */}
                     <div>
-                        <h2 className="text-lg sm:text-xl font-extrabold uppercase tracking-tight truncate">
+                        <h2 className="text-lg md:text-xl font-extrabold uppercase tracking-tight truncate">
                             {fitLog.name}
                         </h2>
 
@@ -33,37 +39,45 @@ const ListedWorkoutCard = ({ fitLog }: { fitLog: FitLogType }) => {
                         </p>
                     </div>
 
-                    {/* Stats */}
-                    <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-base-content/70">
-                        <span className="inline-flex items-center gap-1.5">
-                            ⏱️ {fitLog.duration} min
-                        </span>
+                    <div className="mt-4 flex flex-col gap-4  lg:self-auto lg:flex-row lg:items-center lg:justify-between">
 
-                        <span className="inline-flex items-center gap-1.5">
-                            🔥 {fitLog.caloriesBurned} kcal
-                        </span>
+                        {/* Stats */}
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-300">
 
-                        <span className="inline-flex items-center gap-1.5">
-                            ⭐ {fitLog.rating}
-                        </span>
-                    </div>
+                            <span className="inline-flex items-center gap-1">
+                                <span className="text-[#ccff00] leading-none">◯</span>
+                                {fitLog.duration} min
+                            </span>
 
-                    {/* Actions */}
-                    <div className="mt-4 sm:mt-auto flex flex-wrap sm:justify-end items-center gap-2">
-                        <button className="btn btn-sm rounded-lg">
-                            View Details
-                        </button>
+                            <span className="inline-flex items-center gap-1">
+                                <span className="text-[#ccff00] text-xl leading-none">🔥︎</span>
+                                {fitLog.caloriesBurned} kcal
+                            </span>
 
-                        <button className="btn btn-sm rounded-lg bg-[#ccff00] text-black border-none hover:bg-[#b8e600]">
-                            Mark as Done
-                        </button>
+                            <span className="inline-flex items-center gap-1">
+                                <span className="text-[#ccff00] text-xl leading-none">★</span>
+                                {fitLog.rating}
+                            </span>
 
-                        <button
-                            className="btn btn-sm btn-circle btn-ghost text-base-content/60 hover:text-error"
-                            aria-label="Remove workout"
-                        >
-                            ✕
-                        </button>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex flex-wrap items-center gap-2 ">
+                            <Link href={`/${fitLog.id}`}>
+                                <button className="btn btn-neutral bg-base-200 border border-gray-500 px-5 rounded-3xl">View Details</button>
+                            </Link>
+
+                            {
+                                activeTab === "plan" ? 
+                                <button className="btn btn-success bg-[#ccff00] text-black rounded-3xl px-5">Mark as Done</button>
+                                :
+                                ""
+                            }
+
+
+                            <CrossButton fitLog={fitLog} activeTab={activeTab}></CrossButton>
+                        </div>
+
                     </div>
                 </div>
             </div>

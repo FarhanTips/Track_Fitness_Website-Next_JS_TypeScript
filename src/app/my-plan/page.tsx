@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FitLogsContext } from "@/context/fitLogscontext";
 import ListedWorkoutCard from "@/Components/listedWorkoutCard";
 import EmptyWorkoutList from "@/Components/emptyWorkoutList";
@@ -9,7 +9,13 @@ import ListedWorkoutMetrics from "@/Components/listedWorkoutMetrics";
 const MyPlanPage = () => {
     const { plansArr, laterArr } = useContext(FitLogsContext);
     const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            console.log("3 seconds passed");
+        }, 3000);
 
+        return () => clearTimeout(timer);
+    }, []);
     return (
         <main className="w-10/12 max-w-7xl mx-auto py-8 sm:py-10">
 
@@ -25,19 +31,19 @@ const MyPlanPage = () => {
 
 
             {/* Metrics */}
-            <ListedWorkoutMetrics currentArr = {activeTab==="plan" ? plansArr : laterArr}></ListedWorkoutMetrics>
+            <ListedWorkoutMetrics currentArr={activeTab === "plan" ? plansArr : laterArr}></ListedWorkoutMetrics>
 
             {/* Tab */}
             <div className="tabs tabs-lift">
-                <input type="radio" name="my_tabs_3" className="tab font-semibold" aria-label="Today's Plan" defaultChecked 
-                onChange={() => setActiveTab("plan")}/>
+                <input type="radio" name="my_tabs_3" className="tab font-semibold" aria-label="Today's Plan" defaultChecked
+                    onChange={() => setActiveTab("plan")} />
 
                 <div className="tab-content bg-base-100 border-base-300 p-6 space-y-6">
                     {
                         plansArr.length < 1 ?
                             <EmptyWorkoutList></EmptyWorkoutList>
                             :
-                            plansArr.map(fitLog => <ListedWorkoutCard key={fitLog.id} fitLog={fitLog}></ListedWorkoutCard>)
+                            plansArr.map(fitLog => <ListedWorkoutCard key={fitLog.id} fitLog={fitLog} activeTab={activeTab}></ListedWorkoutCard>)
                     }
                 </div>
 
@@ -48,7 +54,7 @@ const MyPlanPage = () => {
                         laterArr.length < 1 ?
                             <EmptyWorkoutList></EmptyWorkoutList>
                             :
-                            laterArr.map(fitLog => <ListedWorkoutCard key={fitLog.id} fitLog={fitLog}></ListedWorkoutCard>)
+                            laterArr.map(fitLog => <ListedWorkoutCard key={fitLog.id} fitLog={fitLog} activeTab={activeTab}></ListedWorkoutCard>)
                     }
                 </div>
 
