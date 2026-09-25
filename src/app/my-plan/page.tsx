@@ -1,21 +1,38 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { FitLogsContext } from "@/context/fitLogscontext";
 import ListedWorkoutCard from "@/Components/listedWorkoutCard";
 import EmptyWorkoutList from "@/Components/emptyWorkoutList";
 import ListedWorkoutMetrics from "@/Components/listedWorkoutMetrics";
+import { FitLogType } from "@/types/fitLogType";
+
+type SortType = "duration" | "calories" | "rating";
 
 const MyPlanPage = () => {
     const { plansArr, laterArr } = useContext(FitLogsContext);
     const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            console.log("3 seconds passed");
-        }, 3000);
 
-        return () => clearTimeout(timer);
-    }, []);
+    const [sortBy, setSortBy] = useState<SortType>("duration");
+
+    const sortWorkoutList = (workoutList: FitLogType[]) => {
+        const sortedWorkoutList = [...workoutList];
+        if (sortBy === "duration") {
+            sortedWorkoutList.sort((a, b) => b.duration - a.duration);
+        }
+        else if (sortBy === "calories") {
+            sortedWorkoutList.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+        }
+        else if (sortBy === "rating") {
+            sortedWorkoutList.sort((a, b) => b.rating - a.rating);
+        }
+
+        return sortedWorkoutList;
+    }
+
+    const sortedPlansArr = sortWorkoutList(plansArr);
+    const sortedLaterArr = sortWorkoutList(laterArr);
+
     return (
         <main className="w-10/12 max-w-7xl mx-auto py-8 sm:py-10">
 
@@ -33,6 +50,19 @@ const MyPlanPage = () => {
             {/* Metrics */}
             <ListedWorkoutMetrics currentArr={activeTab === "plan" ? plansArr : laterArr}></ListedWorkoutMetrics>
 
+            {/* Sort */}
+            <div className="flex gap-4 justify-end items-center">
+                <p className="text-base text-gray-400">Sort By</p>
+                <select value={sortBy}
+                    className="select select-info rounded-full w-32 font-semibold"
+                    onChange={(e) => setSortBy(e.target.value as SortType)}>
+
+                    <option value="duration">Duration</option>
+                    <option value="calories">Calories</option>
+                    <option value="rating">Rating</option>
+                </select>
+            </div>
+
             {/* Tab */}
             <div className="tabs tabs-lift">
                 <input type="radio" name="my_tabs_3" className="tab font-semibold" aria-label="Today's Plan" defaultChecked
@@ -43,7 +73,7 @@ const MyPlanPage = () => {
                         plansArr.length < 1 ?
                             <EmptyWorkoutList></EmptyWorkoutList>
                             :
-                            plansArr.map(fitLog => <ListedWorkoutCard key={fitLog.id} fitLog={fitLog} activeTab={activeTab}></ListedWorkoutCard>)
+                            sortedPlansArr.map(fitLog => <ListedWorkoutCard key={fitLog.id} fitLog={fitLog} activeTab={activeTab}></ListedWorkoutCard>)
                     }
                 </div>
 
@@ -54,7 +84,7 @@ const MyPlanPage = () => {
                         laterArr.length < 1 ?
                             <EmptyWorkoutList></EmptyWorkoutList>
                             :
-                            laterArr.map(fitLog => <ListedWorkoutCard key={fitLog.id} fitLog={fitLog} activeTab={activeTab}></ListedWorkoutCard>)
+                            sortedLaterArr.map(fitLog => <ListedWorkoutCard key={fitLog.id} fitLog={fitLog} activeTab={activeTab}></ListedWorkoutCard>)
                     }
                 </div>
 
