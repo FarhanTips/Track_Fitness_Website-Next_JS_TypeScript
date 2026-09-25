@@ -20,7 +20,7 @@ const Hero = () => {
                     </p>
 
                     <Link href="#library"
-                        className="btn btn-success mt-8 rounded-xl bg-[#ccff00] px-6 py-4 font-bold text-black">
+                        className="btn btn-success mt-8 rounded-xl bg-[#ccff00] px-6 py-4 sm:w-55 w-full font-bold text-black text-xs sm:text-sm">
                         BROWSE WORKOUTS <span className="text-lg">↓</span>
                     </Link>
 
