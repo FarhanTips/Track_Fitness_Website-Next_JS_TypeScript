@@ -13,7 +13,7 @@ const Hero = () => {
                     <p className="mb-4 text-xs font-bold text-[#ccff00] md:text-sm">WORKOUT LIBRARY
                     </p>
 
-                    <h1 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">TRAIN WITH INTENT. LOG EVERY SET.</h1>
+                    <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">TRAIN WITH INTENT. LOG EVERY SET.</h1>
 
                     <p className="mt-4 text-xs md:text-sm text-gray-400">
                         FitLog is a dark, no-nonsense gym companion: pick a lift, lock it into today&apos;s plan plan, and watch the week&apos;s work add up.
