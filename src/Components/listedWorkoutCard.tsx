@@ -2,6 +2,7 @@ import { FitLogType } from '@/types/fitLogType';
 import Image from 'next/image';
 import Link from 'next/link';
 import CrossButton from './Buttons/crossButton';
+import MarkAsDoneButton from './Buttons/markAsDoneButton';
 
 
 interface ListedWorkoutCardProps {
@@ -10,6 +11,10 @@ interface ListedWorkoutCardProps {
 }
 
 const ListedWorkoutCard = ({ fitLog, activeTab }: ListedWorkoutCardProps) => {
+
+    // console.log(typeof window, "hello Boss");
+    // ListedWorkoutCard-এ hook না থাকলেও, এটা MyPlanPage-এর Client Component boundary-এর ভিতরে import করা হয়েছে, তাই client side module graph-এর অংশ।
+
     return (
         <div className="group rounded-2xl border border-base-300 bg-base-200 p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
             <div className="flex flex-col md:flex-row gap-4 md:gap-5">
@@ -69,13 +74,13 @@ const ListedWorkoutCard = ({ fitLog, activeTab }: ListedWorkoutCardProps) => {
 
                             {
                                 activeTab === "plan" ? 
-                                <button className="btn btn-success bg-[#ccff00] text-black rounded-3xl px-5">Mark as Done</button>
+                                <MarkAsDoneButton fitLog={fitLog}></MarkAsDoneButton>
                                 :
                                 ""
                             }
 
-
                             <CrossButton fitLog={fitLog} activeTab={activeTab}></CrossButton>
+
                         </div>
 
                     </div>

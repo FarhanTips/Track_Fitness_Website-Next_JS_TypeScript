@@ -10,6 +10,7 @@ import { FitLogType } from "@/types/fitLogType";
 type SortType = "duration" | "calories" | "rating";
 
 const MyPlanPage = () => {
+    console.log(typeof window, "hello my path");
     const { plansArr, laterArr } = useContext(FitLogsContext);
     const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
 
@@ -51,7 +52,7 @@ const MyPlanPage = () => {
             <ListedWorkoutMetrics currentArr={activeTab === "plan" ? plansArr : laterArr}></ListedWorkoutMetrics>
 
             {/* Sort */}
-            <div className="flex gap-4 justify-end items-center">
+            <div className="flex gap-4 justify-end items-center mt-10">
                 <p className="text-base text-gray-400">Sort By</p>
                 <select value={sortBy}
                     className="select select-info rounded-full w-32 font-semibold"
@@ -64,7 +65,7 @@ const MyPlanPage = () => {
             </div>
 
             {/* Tab */}
-            <div className="tabs tabs-lift">
+            <div className="tabs tabs-lift mb-20">
                 <input type="radio" name="my_tabs_3" className="tab font-semibold" aria-label="Today's Plan" defaultChecked
                     onChange={() => setActiveTab("plan")} />
 

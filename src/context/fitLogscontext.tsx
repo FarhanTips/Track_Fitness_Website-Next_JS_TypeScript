@@ -7,27 +7,39 @@ interface FitLogsContextType {
     setPlansArr: Dispatch<SetStateAction<FitLogType[]>>;
     laterArr: FitLogType[];
     setLaterArr: Dispatch<SetStateAction<FitLogType[]>>;
+
+    completedWorkoutsArr: FitLogType[];
+    setCompletedWorkoutsArr: Dispatch<SetStateAction<FitLogType[]>>;
 }
 export const FitLogsContext = createContext<FitLogsContextType>({
     plansArr: [],
     setPlansArr: () => { },
     laterArr: [],
-    setLaterArr: () => { }
+    setLaterArr: () => { },
+
+    completedWorkoutsArr: [],
+    setCompletedWorkoutsArr: () => { }
+
 });
 
-const FitLogProvider = ({children} : { children: ReactNode }) => {
+const FitLogProvider = ({ children }: { children: ReactNode }) => {
     const [plansArr, setPlansArr] = useState<FitLogType[]>([]);
     const [laterArr, setLaterArr] = useState<FitLogType[]>([]);
 
-    const sharedData : FitLogsContextType = {
+    const [completedWorkoutsArr, setCompletedWorkoutsArr] = useState<FitLogType[]>([]);
+
+    const sharedData: FitLogsContextType = {
         plansArr,
         setPlansArr,
         laterArr,
-        setLaterArr
+        setLaterArr,
+
+        completedWorkoutsArr,
+        setCompletedWorkoutsArr
     }
 
     return (
-        <FitLogsContext.Provider value ={sharedData}>
+        <FitLogsContext.Provider value={sharedData}>
             {children}
         </FitLogsContext.Provider>
     );
