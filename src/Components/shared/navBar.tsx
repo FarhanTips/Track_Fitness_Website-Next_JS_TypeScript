@@ -40,7 +40,7 @@ const NavBar = () => {
                             src={logo}
                             alt="FITLOG logo"
                             width={20}
-                            height={200}
+                            height={20}
                             className="object-contain -scale-x-100"
                         />
                         <Link href={"/"}>
