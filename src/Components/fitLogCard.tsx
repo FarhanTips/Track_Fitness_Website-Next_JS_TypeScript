@@ -11,7 +11,7 @@ const FitLogCard = ({ fitLog }: FitLogCardProps) => {
     return (
         <div>
             <Link href={`/${fitLog.id}`}>
-                <div className="group overflow-hidden rounded-2xl bg-base-100 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <div className="group overflow-hidden rounded-2xl bg-base-100 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-gray-700">
 
                     {/* Image */}
                     <figure className="relative h-56 overflow-hidden">
