@@ -22,7 +22,7 @@ const NavBar = () => {
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                            <svg aria-label="Menu" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg aria-label="Menu" xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
                             </svg>
                         </div>
@@ -41,10 +41,10 @@ const NavBar = () => {
                             alt="FITLOG logo"
                             width={20}
                             height={20}
-                            className="object-contain -scale-x-100"
+                            className="h-3.5 w-3.5 object-contain -scale-x-100 sm:h-5 sm:w-5"
                         />
                         <Link href={"/"}>
-                            <span className="text-xl font-bold">
+                            <span className="text-sm sm:text-xl font-bold">
                                 FITLOG
                             </span>
                         </Link>
@@ -60,18 +60,18 @@ const NavBar = () => {
                 <div className="navbar-end flex items-center space-x-2 sm:space-x-5 lg:space-x-7 font-semibold">
 
                     <Link href={"/my-plan"}>
-                        <div className="flex items-center gap-2">
+                        <div className="text-xs sm:text-base flex items-center gap-2">
                             <span>Plan</span>
-                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#ccff00] text-black">
+                            <span className="inline-flex h-6 w-6 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-[#ccff00] text-black">
                                 {plansArr.length}
                             </span>
                         </div>
                     </Link>
 
                     <Link href={"/my-plan"}>
-                        <div className="flex items-center gap-2 text-[#d1d5db]">
+                        <div className="text-xs sm:text-base flex items-center gap-2 text-[#d1d5db]">
                             <span>Saved</span>
-                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#9ca3af]">
+                            <span className="inline-flex h-6 w-6 sm:h-8 sm:w-8 items-center justify-center rounded-full border border-[#9ca3af]">
                                 {laterArr.length}
                             </span>
                         </div>
