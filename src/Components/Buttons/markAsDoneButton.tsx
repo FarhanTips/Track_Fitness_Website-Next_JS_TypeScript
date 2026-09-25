@@ -2,6 +2,7 @@
 import { FitLogsContext } from "@/context/fitLogscontext";
 import { FitLogType } from "@/types/fitLogType";
 import { useContext } from "react";
+import { toast } from "react-toastify";
 
 
 const MarkAsDoneButton = ({ fitLog }: { fitLog: FitLogType }) => {
@@ -17,10 +18,12 @@ const MarkAsDoneButton = ({ fitLog }: { fitLog: FitLogType }) => {
         if (done){
             
             setCompletedWorkoutsArr(completedWorkoutsArr.filter(elem => elem.id !== workout.id));
+            toast.warning(`${workout.name} marked as incomplete.`);
    
         }
         else{
             setCompletedWorkoutsArr([...completedWorkoutsArr, workout]);
+            toast.success(`${workout.name} completed!`);
         }
         return;
     }
