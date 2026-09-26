@@ -2,8 +2,9 @@
 
 ### Train with intent. Log every set.
 
-FitLog is a modern workout library and planning app that helps users discover exercises, build a daily workout plan, save workouts, and track completed workouts through a clean, responsive interface.
+FitLog is a modern workout planning and tracking application built with Next.js, React, TypeScript and Tailwind CSS. It provides a clean and responsive platform for discovering workouts, creating daily plans, saving workouts for later and tracking completed sessions.
 
+Designed with a component-based architecture and React Context API for global state management, FitLog focuses on a smooth, responsive, and intuitive workout management experience.
 ## Tech Stack
 
 * **Next.js** — App Router, Server Components & dynamic routes
