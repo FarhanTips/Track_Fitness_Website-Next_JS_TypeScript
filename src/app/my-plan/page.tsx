@@ -35,7 +35,7 @@ const MyPlanPage = () => {
     const sortedLaterArr = sortWorkoutList(laterArr);
 
     return (
-        <main className="w-10/12 max-w-7xl mx-auto py-8 sm:py-10">
+        <main className="w-10/12 max-w-7xl mx-auto pb-8  sm:pb-10">
 
             {/* Header */}
             <div className="mb-8">
